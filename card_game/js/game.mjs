@@ -4,7 +4,7 @@ import { getTextureById } from "./loader.mjs";
 
 let cards;
 let firstChoice;
-let secondChoice;
+var secondChoice;
 export function start(app) {
   const { stage } = app;
   cards = drawCards(stage);
@@ -19,7 +19,16 @@ export function start(app) {
     } else {
       stage.interactiveChildren = false;
       secondChoice = cards.filter((v) => v.isOpen());
-      if (secondChoice[0].id === secondChoice[1].id) {
+      
+       
+          if(secondChoice[1]===undefined){
+            secondChoice[0];
+            
+             
+          }
+      
+      
+    if (secondChoice[0].id === secondChoice[1].id) {
         setTimeout(() => {
           stage.removeChild(secondChoice[0].view);
           stage.removeChild(secondChoice[1].view);
@@ -35,16 +44,24 @@ export function start(app) {
           secondChoice = undefined;
           stage.interactiveChildren = true;
         }, 1000);
-      } else {
-        setTimeout(()=>{
-        cards.forEach((c) => {
-          c.reset();
-        });
-        firstChoice = undefined;
-        secondChoice = undefined;
-        stage.interactiveChildren = true;
-    }, 500);
       }
+  
+    
+  
+
+       else{
+        setTimeout(()=>{
+          cards.forEach((c) => {
+            c.reset();
+          });
+          firstChoice = undefined;
+          secondChoice = undefined;
+          stage.interactiveChildren = true;
+      }, 500);
+      }
+    
+  
+    
     }
   });
 }
@@ -52,10 +69,10 @@ export function start(app) {
 function drawCards(stage) {
   let cardNum = 0;
   const cards = [];
-  const offsetX = 10;
-  const offsetXY = 10;
-  const paddingX = 10;
-  const paddingY = 10;
+  const offsetX = 0;
+  const offsetXY = 20;
+  const paddingX = 20;
+  const paddingY = 30;
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 3; j++) {
       for (let c = 0; c < 2; c++) {
