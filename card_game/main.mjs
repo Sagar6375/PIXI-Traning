@@ -4,7 +4,7 @@ import { loadAssets } from "./js/loader.mjs";
 
 export function createGame(div) {
     const game = new Application({
-        width:1024,
+        width:window.view.width,
         height:920,
         backgroundColor:0x2266FF,
         resizeTo: div
