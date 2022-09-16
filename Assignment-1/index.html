@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/browser/pixi.js" integrity="sha512-XHX32YCocEDCIiENmO7pf91TtRITLfCagN+uLlj9sJ7RUVBHN1JZtlfb02x4OyXfkuQegd1u6i9mzpRMg+w5xw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+   <style>
+        body{
+            overflow: hidden;
+            padding: 0%;
+            margin: 0%;
+        }
+        #progress{
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: green;
+            height: 3px;
+            width: 10px;
+            z-index: 1999;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="progress"></div>
+    <script>
+        console.log("PIXI",PIXI);
+        const game=new PIXI.Application({
+            backgroundColor: 0x112244,
+            width: 1370,
+            height: 1100,
+            color: 0xffffff,
+        });
+        console.log('pixi instance',game);
+        document.body.appendChild(game.view);
+        const hello=new PIXI.Text("Hello World!!");
+        hello.x=innerWidth/2;
+        hello.y=innerHeight/2;
+        hello.anchor.set(0.5);
+        
+        game.loader.add('waterfall','https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg').add('car','https://cdn.pixabay.com/photo/2017/03/20/04/57/truck-2158284__480.png').load(()=>{
+            const waterfall=PIXI.Sprite.from('waterfall');
+            waterfall.width=innerWidth;
+            waterfall.height=innerHeight*1.6;;
+            game.stage.addChild(waterfall);
+           
+            const car=PIXI.Sprite.from('car');
+            car.x=innerWidth/5;
+            car.y=innerHeight/4;
+            game.stage.addChild(car);
+
+            hello.anchor.set(0.5);
+            game.stage.addChild(hello);
+        });
+        let pDiv=document.getElementById('progress');
+        game.loader.onProgress.add((e)=>{
+            console.log('loaded',e.progress);
+            pDiv.style.width = e.progress+"%";
+            if(e.progress===100){
+                pDiv.style.width=1000;
+            }
+        });
+        //load karega isme callback function denge ki load hone ke baad kya karega
+        // chaining functions like in that of java
+       
+        
+        
+    </script>
+    <!-- pixi ke saare functions global PIXI object me mil jayenge -->
+</body>
+</html>
+<!-- 
+    HTMl ke do modules hote hai ek common HTMl and ES6
+ -->
