@@ -22,7 +22,7 @@ export function start(app) {
       
        
           if(secondChoice[1]===undefined){
-            secondChoice[0];
+            secondChoice;
             
              
           }
