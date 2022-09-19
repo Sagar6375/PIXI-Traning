@@ -22,10 +22,8 @@ export function start(app) {
       
        
           if(secondChoice[1]===undefined){
-            secondChoice;
-            
-             
-          }
+            secondChoice[1]=98;
+               }
       
       
     if (secondChoice[0].id === secondChoice[1].id) {
